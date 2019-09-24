@@ -1,0 +1,51 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(int[] answers) {
+
+        int[] supo1 = {1, 2, 3, 4, 5};
+        int[] supo2 = { 2, 1, 2, 3, 2, 4, 2, 5};
+        int[] supo3 = { 3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+
+        int[] supoScoreArr = {0,0,0};
+
+        int[] answerTemp =  new int[3];
+
+
+        for(int i=0; i<answers.length; i++){
+            int ans = answers[i];
+            if(supo1[i%5] == ans) supoScoreArr[0]++;
+            if(supo2[i%8] == ans) supoScoreArr[1]++;
+            if(supo3[i%10] == ans) supoScoreArr[2]++;
+        }
+
+    int max = -100;
+    for(int i=0;i<supoScoreArr.length;i++) {
+        System.out.println(supoScoreArr[i]);
+        if(max<supoScoreArr[i]) {
+        max = supoScoreArr[i];
+        }
+
+    }
+        System.out.println(max);
+        int ansewrIdx = 0;
+        for(int i=0;i<supoScoreArr.length;i++) {
+
+        if(max == supoScoreArr[i]){
+            answerTemp[ansewrIdx] = i+1;
+            ansewrIdx++;
+            System.out.println(i+1);
+        }
+
+    }
+        int[] answer =  new int[ansewrIdx];
+        ansewrIdx = 0;
+        for(int i=0;i<answerTemp.length;i++) {
+            if(answerTemp[i]!=0){
+               answer[ansewrIdx] =  answerTemp[i];
+                ansewrIdx++;
+            }
+        }
+        return answer;
+    }
+}
