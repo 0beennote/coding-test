@@ -1,0 +1,44 @@
+import java.util.*;
+class Solution {
+    public int solution(int n, int[] lost, int[] reserve) {
+
+        //실제 수업 못듣는 애들 목록
+        ArrayList<Integer> absentList = new ArrayList<>();
+        //살아난애들 목록 (lost 배열 인덱스)
+        ArrayList<Integer> surviveList = new ArrayList<>();
+        
+        //체육복 안가져온 애들로 수업 못듣는 애들 목록 초기화
+        for(int a=0;a<lost.length;a++){
+            absentList.add(lost[a]);
+        }
+        
+        //여벌 체육복 가져왔는데 도둑당한 애는 취급할 필요가 없으니 제외처리 
+        for(int i=0;i<reserve.length;i++){
+            for(int j=0;j<lost.length;j++){
+                if(reserve[i] == lost[j]){
+                    absentList.remove((Integer)lost[j]);
+                    reserve[i]= -10000;
+                    lost[j] = -10000;
+                }
+            }
+        }
+        
+        for(int i=0;i<reserve.length;i++){
+            int curReserve = reserve[i];
+            for(int j=0;j<lost.length;j++){
+                int curLost = lost[j];
+                //현재 체육복 여분으로 살릴수 있으면
+                if(Math.abs(curLost-curReserve)<=1 && !surviveList.contains((Integer)j)){
+
+                    //불참목록에서 제외
+                    absentList.remove((Integer)curLost);
+                    surviveList.add((Integer)j);
+                    break;
+                }
+            }
+        }
+
+        //인풋개수-불참자 수 리턴
+        return n-absentList.size();
+    }
+}
