@@ -1,4 +1,4 @@
-package com.example.demo;
+package kit.hash.lvl1;
 
 import java.util.Arrays;
 

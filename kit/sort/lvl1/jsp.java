@@ -1,4 +1,4 @@
-package com.example.demo;
+package kit.sort.lvl1;
 
 import java.util.Arrays;
 

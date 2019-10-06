@@ -1,3 +1,4 @@
+package kit.search.lvl1;
 
 
 public int[] solution(int[] answers) {
