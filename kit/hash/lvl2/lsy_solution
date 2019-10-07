@@ -1,0 +1,33 @@
+import java.util.*;
+
+class Solution {
+    public boolean solution(String[] phone_book) {
+        boolean answer = true;
+        Map<String,String> map = new HashMap();
+        for(String phone : phone_book) {
+            int phoneLength = phone.length();
+            String beforeString = map.get(Integer.toString(phoneLength));
+            if (beforeString != null) {
+                map.put(Integer.toString(phoneLength), beforeString + "_" + phone);
+            } else {
+                map.put(Integer.toString(phoneLength), "_" + phone);
+            }
+        }
+        for(String phone : phone_book) {
+            int phoneLength = phone.length();
+            
+            for (int i = 20; i > phoneLength; i--) {
+                String compareString = map.get(Integer.toString(i));
+                if (compareString == null || compareString.length() == 0) {
+                    continue;
+                }
+                if (compareString.contains("_" + phone)) {
+                    return false;
+                }
+            }
+            
+        }
+        
+        return answer;
+    }
+}
