@@ -1,3 +1,5 @@
+import java.util.*;
+
 class Solution {
     public int solution(String[][] clothes) {
 
@@ -20,18 +22,14 @@ class Solution {
         }
 
         // List size of keys
+        int answer = 1;
         List<Integer> intList = new ArrayList<Integer>();
         for (Map.Entry<String, List<String>> entry : clothMap.entrySet()) {
             intList.add(entry.getValue().size());
+
+            answer = answer * (entry.getValue().size() + 1);
         }
 
-        int answer = 1;
-        int index = 0;
-        // What the...
-        while(index < clothMap.size()) {
-            index++;
-        }
-
-        return answer;
+        return answer-1;
     }
 }
